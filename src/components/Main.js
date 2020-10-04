@@ -1,48 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Main.css'
-import Logo from './../assets/React-icon.svg'
-import Search from './../assets/search.svg'
+import Header from './Header'
+import SearchForm from './SearchForm'
+import Content from './Content'
+import axios from 'axios'
+
+
 
 const Main = () => {
+    const [location, setLocation] = useState('')
+    const [weather, setWeather] = useState('')
+    const [date, setDate] = useState('')
+
+
+    const apiCall = async e => {
+        e.preventDefault()
+
+        const API_KEY = 'a5163f5e55376d613d9d607518cb87fa'
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}&units=metric`
+        const request = axios.get(url)
+        const response = await request
+        setLocation({
+            city: response.data.name,
+            country: response.data.sys.country
+        })
+        setWeather({
+            temp: response.data.main.temp,
+            pressure: response.data.main.pressure,
+            humidity: response.data.main.humidity,
+            sky: response.data.weather[0].description,
+            icon: response.data.weather[0].icon,
+            wind: response.data.wind.speed,
+            windDirection: response.data.wind.deg,
+        })
+        setDate({
+            locationTime: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`
+        })
+        console.log(response)
+    }
+
+
     return (
         <div className="wrapper">
-            <header className="header">
-                <div className="main-logo">
-                    <img className="main-logo-img" src={Logo} alt="main-logo-img" />
-                    <h1 className="title">React Weather App</h1>
-                </div>
-                <a href='https://github.com/Ivan-Lebedev' className="gh">GitHub</a>
-            </header>
-
-            <form className="main-form" action="submit">
-                <input className="main-form-input" type="text" placeholder='Enter city name' />
-                <button><img className="main-button" src={Search} alt="main-button" /></button>
-            </form>
-
-            <section className="main-content">
-                <h2 className="city-name">Samara Oblast, RU</h2>
-                <p className="date-now">Sunday, 7:09 PM, Clear Sky</p>
-                <div className="weather-data">
-                    <div className="weather-data-main-data">
-                        <div className="icon"><img src="https://openweathermap.org/img/wn/01n@2x.png" alt="" /></div>
-                        <div className="temperature">9°C</div>
-                    </div>
-                </div>
-                <div className="addition-data">
-                    <div className="addition-data-item">
-                        <div className="addition-data-item-desc">Wind:</div>
-                        <div className="addition-data-item-value">5.0m/s N</div>
-                    </div>
-                    <div className="addition-data-item">
-                        <div className="addition-data-item-desc">Pressure:</div>
-                        <div className="addition-data-item-value">1034hPa</div>
-                    </div>
-                    <div className="addition-data-item">
-                        <div className="addition-data-item-desc">Humidity:</div>
-                        <div className="addition-data-item-value">42%</div>
-                    </div>
-                </div>
-            </section>
+            <Header />
+            <SearchForm apiCall={apiCall} />
+            <Content
+                location={location}
+                weather={weather}
+                date={date} />
         </div>
     )
 }
