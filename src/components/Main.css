@@ -1,0 +1,125 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    background: #0741e01f;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(5, 5, 218, 0.411);
+    height: 5rem;
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+}
+.main-logo {
+    display: flex;
+    width: 32rem;
+    align-items: center;
+    height: 100%;
+}
+.main-logo-img {
+    height: 100%;
+}
+.title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.75;
+    text-transform: uppercase;
+}
+.gh {
+    font-size: 0.875rem;
+    min-width: 64px;
+    font-weight: 500;
+    line-height: 1.75;
+    text-transform: uppercase;
+}
+.main-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+.main-form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+}
+button img {
+    height: 100%;
+}
+.main-form-input {
+    font: inherit;
+    height: 2rem;
+    padding: 1rem;
+    letter-spacing: inherit;
+}
+
+.main-content {
+    padding: 3rem;
+    margin-top: 2rem;
+    width: 70vw;
+    height: 60vh;
+    border: solid 2px blue;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+.city-name {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.date-now {
+    margin: 0;
+    margin-top: 0.3rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.54);
+}
+.weather-data {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.weather-data-main-data {
+    display: flex;
+    justify-content: flex-start;
+    height: 5rem;
+    align-items: center;
+}
+.temperature {
+    margin-top: 1rem;
+    font-size: 5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+.icon {
+    height: 100%;
+}
+.addition-data {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;    
+}
+.addition-data img {
+    height: 90%;
+}
+.addition-data-item {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.addition-data-item-desc {
+    margin-right: .5rem;
+}
+.addition-data-item-value {
+    margin-right: .5rem;
+}
