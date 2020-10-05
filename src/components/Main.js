@@ -11,15 +11,24 @@ const Main = () => {
     const [location, setLocation] = useState('')
     const [weather, setWeather] = useState('')
     const [date, setDate] = useState('')
-
+    const [error, setError] = useState('')
 
     const apiCall = async e => {
         e.preventDefault()
 
+        const location = e.target.elements.location.value
+
+        if (!location) return setError('Please enter the name of the city')
+
         const API_KEY = 'a5163f5e55376d613d9d607518cb87fa'
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}&units=metric`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
         const request = axios.get(url)
         const response = await request
+            .catch(() => {
+                return setError('Location not found')
+            })
+        if (!response) return
+
         setLocation({
             city: response.data.name,
             country: response.data.sys.country
@@ -34,8 +43,9 @@ const Main = () => {
             windDirection: response.data.wind.deg,
         })
         setDate({
-            locationTime: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`
+            timeShift: response.data.timezone
         })
+        setError('')
         console.log(response)
     }
 
@@ -47,7 +57,8 @@ const Main = () => {
             <Content
                 location={location}
                 weather={weather}
-                date={date} />
+                date={date}
+                error={error} />
         </div>
     )
 }

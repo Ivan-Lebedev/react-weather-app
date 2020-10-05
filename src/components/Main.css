@@ -43,6 +43,8 @@
     justify-content: center;
     margin-top: 1.5rem;
     align-items: center;
+
+    position: relative;
 }
 .main-form button {
     display: flex;
@@ -59,12 +61,27 @@ button img {
     height: 2rem;
     padding: 1rem;
     letter-spacing: inherit;
+    border: solid 2px transparent;
+    width: 15rem;   
 }
-
+.main-form-input:focus {
+    outline: none;
+    border-bottom: solid 2px blue;
+}
+.main-form-input-btn {
+    position: absolute;
+    top: 5%;
+    left: 82%;
+    background: transparent;
+    border: none;
+}
+.main-form-input-btn:focus {
+    outline: none;
+}
 .main-content {
     padding: 3rem;
     margin-top: 2rem;
-    width: 70vw;
+    width: 700px;
     height: 60vh;
     border: solid 2px blue;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
@@ -107,7 +124,7 @@ button img {
 .addition-data {
     margin-top: 3rem;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 .addition-data img {
     height: 90%;
@@ -119,9 +136,40 @@ button img {
     line-height: 1.5;
 }
 .addition-data-item-desc {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
 }
 .addition-data-item-value {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     color: #ff0a02;
+}
+.no-data-input {
+    margin-top: 3rem;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        width: 700px;
+    }
+}
+@media (max-width: 768px) {
+    .main-content {
+        width: 90vw;
+    }
+}
+@media (max-width: 600px) {
+    .main-content {
+        width: 100vw;
+        border: none;
+        box-shadow: none;
+        padding: 1rem;
+    }
+    .addition-data {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+    }
 }
